@@ -1,9 +1,15 @@
 from django.http import HttpResponse
 
+# Импортируем загрузчик.
+from django.template import loader
+
 
 def index(request):
-    return HttpResponse('Главная страница')
-
+    # Загружаем шаблон;
+    # шаблоны обычно хранят в отдельной директории.
+    template = loader.get_template('ice_cream/index.html')
+    # Формируем шаблон
+    return HttpResponse(template.render({}, request)) 
 
 def ice_cream_list(request):
     return HttpResponse('Список мороженого')
